@@ -46,6 +46,7 @@ namespace TimerApp.ViewModel
         {
             using (SQLiteConnection conn = new SQLiteConnection(dbPath))
             {
+                // Make sure the timer has an Id before deleting.
                 conn.CreateTable<Timer>();
                 conn.Delete(timer);
             }
