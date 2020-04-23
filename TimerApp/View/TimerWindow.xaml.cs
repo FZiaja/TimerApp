@@ -25,19 +25,5 @@ namespace TimerApp.View
         {
             InitializeComponent();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Timer timer = new Timer("Test Timer", 3665);
-            /*string dbName = "Timers.db";
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            string dbPath = System.IO.Path.Combine(path, dbName);
-
-            using (SQLiteConnection conn = new SQLiteConnection(dbPath))
-            {
-                conn.CreateTable<Timer>();
-                conn.Insert(timer);
-            }*/
-        }
     }
 }

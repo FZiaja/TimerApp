@@ -40,6 +40,8 @@ namespace TimerApp.View.Controls
             if(control != null)
             {
                 //control.nameTextBlock.Text = (e.NewValue as Timer).Name
+                control.timerNameTextBlock.Text = (e.NewValue as Timer).Name;
+                control.timerTextBlock.Text = (e.NewValue as Timer).ToString();
             }
         }
 

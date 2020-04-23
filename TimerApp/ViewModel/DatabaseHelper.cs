@@ -25,7 +25,7 @@ namespace TimerApp.ViewModel
             }
         }
 
-        public static void ReadDatabase()
+        public static List<Timer> ReadDatabase()
         {
             List<Timer> timers;
             using (SQLiteConnection conn = new SQLiteConnection(dbPath))
@@ -34,12 +34,13 @@ namespace TimerApp.ViewModel
                 timers = conn.Table<Timer>().ToList();
             }
 
-            ListView placeholderLV = new ListView();
+            //ListView placeholderLV = new ListView();
 
-            if(timers != null)
+            /*if(timers != null)
             {
                 placeholderLV.ItemsSource = timers;
-            }
+            }*/
+            return timers;
         }
 
         public static void Delete(Timer timer)

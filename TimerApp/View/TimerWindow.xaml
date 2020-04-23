@@ -4,21 +4,152 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TimerApp.View"
+        xmlns:vm="clr-namespace:TimerApp.ViewModel"
+        xmlns:uc="clr-namespace:TimerApp.View.Controls"
         mc:Ignorable="d"
-        Title="TimerWindow" Height="450" Width="800">
-    <StackPanel>
-        <Button Content="Test"
-                Click="Button_Click"/>
-        <ListView>
+        Title="TimerWindow" Height="600" Width="300">
+    <Window.Resources>
+        <vm:TimerViewModel x:Key="vm"/>
+    </Window.Resources>
+    <StackPanel DataContext="{StaticResource vm}">
+        <TextBlock Text="{Binding RunningTimer.Name}"
+                   HorizontalAlignment="Center"
+                   FontSize="20"/>
+        <Grid HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="26"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="26"/>
+                <ColumnDefinition Width="26"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="26"/>
+                <ColumnDefinition Width="26"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Content="+"
+                    Command="{Binding TimerEditCommand}"
+                    CommandParameter="+3600"
+                    Grid.Row="0"
+                    Grid.Column="0"/>
+            <Button Content="+"
+                    Command="{Binding TimerEditCommand}"
+                    CommandParameter="600"
+                    Grid.Row="0"
+                    Grid.Column="2"/>
+            <Button Content="+"
+                    Command="{Binding TimerEditCommand}"
+                    CommandParameter="60"
+                    Grid.Row="0"
+                    Grid.Column="3"/>
+            <Button Content="+"
+                    Command="{Binding TimerEditCommand}"
+                    CommandParameter="10"
+                    Grid.Row="0"
+                    Grid.Column="5"/>
+            <Button Content="+"
+                    Command="{Binding TimerEditCommand}"
+                    CommandParameter="1"
+                    Grid.Row="0"
+                    Grid.Column="6"/>
+            <TextBlock Text="{Binding RunningTimer.HoursStr}"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    FontSize="50"/>
+            <TextBlock Text=":"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    FontSize="50"/>
+            <TextBlock Text="{Binding RunningTimer.MinutesStr}"
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="2"
+                    FontSize="50"/>
+            <TextBlock Text=":"
+                    Grid.Row="1"
+                    Grid.Column="4"
+                    FontSize="50"/>
+            <TextBlock Text="{Binding RunningTimer.SecondsStr}"
+                    Grid.Row="1"
+                    Grid.Column="5"
+                    Grid.ColumnSpan="2"
+                    FontSize="50"/>
+            <Button Content="-"
+                    Command="{Binding TimerEditCommand}"
+                    CommandParameter="-3600"
+                    Grid.Row="2"
+                    Grid.Column="0"/>
+            <Button Content="-"
+                    Command="{Binding TimerEditCommand}"
+                    CommandParameter="-600"
+                    Grid.Row="2"
+                    Grid.Column="2"/>
+            <Button Content="-"
+                    Command="{Binding TimerEditCommand}"
+                    CommandParameter="-60"
+                    Grid.Row="2"
+                    Grid.Column="3"/>
+            <Button Content="-"
+                    Command="{Binding TimerEditCommand}"
+                    CommandParameter="-10"
+                    Grid.Row="2"
+                    Grid.Column="5"/>
+            <Button Content="-"
+                    Command="{Binding TimerEditCommand}"
+                    CommandParameter="-1"
+                    Grid.Row="2"
+                    Grid.Column="6"/>
+        </Grid>
+
+        <Grid Margin="30 10">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Content="Reset"
+                    Command="{Binding ResetCommand}"
+                    Margin="5"
+                    Grid.Row="0"
+                    Grid.Column="0"/>
+            <Button Content="{Binding StartPauseButtonString}"
+                    Command="{Binding StartPauseCommand}"
+                    Margin="5"
+                    Grid.Row="0"
+                    Grid.Column="1"/>
+            <StackPanel Orientation="Horizontal"
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2">
+                <Label Content="Timer Name:"/>
+                <TextBox Text="{Binding NewTimerName, UpdateSourceTrigger=PropertyChanged}"
+                         VerticalContentAlignment="Center"
+                         Width="142"/>
+            </StackPanel>
+            <Button Content="Save"
+                    Command="{Binding SaveCommand}"
+                    Margin="5"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"/>
+        </Grid>
+
+        <ListView x:Name="timersListView"
+                  ItemsSource="{Binding Timers}"
+                  Height="250">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock FontSize="20"
-                                   FontWeight="Bold"/>
-                        <TextBlock FontSize="15"
-                                   Foreground="DodgerBlue"/>
-                        <TextBlock FontSize="15"
-                                   FontStyle="Italic"/>
+                        <uc:TimerControl Timer="{Binding}"
+                                         Width="300"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

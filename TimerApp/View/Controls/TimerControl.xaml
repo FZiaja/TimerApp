@@ -5,10 +5,35 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TimerApp.View.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="300">
-    <Grid Background="#FFAACC">
-        <StackPanel>
-            <TextBlock/>
+             d:DesignHeight="65" d:DesignWidth="300">
+    <Grid Background="Black">
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Delete"
+                    Margin="10, 5, 0, 5"
+                    Background="Red"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    Width="50"
+                    FontSize="14"></Button>
+            <Button Content="Start"
+                    Margin="10, 5, 0, 5"
+                    Background="Green"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    Width="50"
+                    FontSize="14"></Button>
+            <StackPanel Margin="10, 0, 0, 0">
+                <TextBlock x:Name="timerNameTextBlock"
+                           Text="Reading Timer"
+                           Padding="0 8 0 0"
+                           Foreground="AliceBlue"
+                           Height="25"/>
+                <TextBlock x:Name="timerTextBlock"
+                           Text="1:30:00"
+                           Padding="0"
+                           Foreground="White"
+                           FontSize="30"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>
