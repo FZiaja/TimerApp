@@ -6,8 +6,6 @@ This application is a re-design of my previous Timer application.
 The previous application worked, but the interface and code were messy, and some features were missing.
 The new version will implement SQLite, custom user controls, and the MVVM design pattern.
 
-Due to design complications, I was unable to meet my original Apr. 23, 2020 deadline.
-
 Here is a list of components that have been tested and are functioning as expected:
 
 Timer-editing interface.
